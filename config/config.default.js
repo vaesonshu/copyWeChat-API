@@ -60,6 +60,28 @@ module.exports = appInfo => {
       underscored: true,
     },
   };
+  // 参数验证
+  config.valparams = {
+    locale: 'zh-cn',
+    throwError: true,
+  };
+  // 加密
+  config.crypto = {
+    secret: 'qwerty@98zxcdsaqwertybvc2!#@3adspkdax*_666', // 不要轻易修改
+  };
+  // jwt鉴权
+  exports.jwt = {
+    secret: 'qwerty@98zxcdsaqwertybvc2!#@3adspkdax*_888', // 不要轻易修改
+  };
+  // redis
+  config.redis = {
+    client: {
+      port: 6379, // Redis port
+      host: '127.0.0.1', // Redis host
+      password: '',
+      db: 0,
+    },
+  };
 
   return {
     ...config,

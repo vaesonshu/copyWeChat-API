@@ -31,6 +31,7 @@ module.exports = app => {
       type: STRING(200),
       allowNull: false,
       defaultValue: '',
+      // 修改器 新增和更新时调用
       set(val) {
         const hmac = crypto.createHash('sha256', app.config.crypto.secret);
         hmac.update(val);
@@ -78,21 +79,21 @@ module.exports = app => {
   });
 
   // 定义关联关系
-  User.associate = function(model) {
-    User.hasMany(app.model.Friend, {
-      as: 'bfriends', // 当前用户的被好友
-      foreignKey: 'friend_id',
-    });
+  // User.associate = function(model) {
+  //   User.hasMany(app.model.Friend, {
+  //     as: 'bfriends', // 当前用户的被好友
+  //     foreignKey: 'friend_id',
+  //   });
 
-    User.hasMany(app.model.Friend, {
-      as: 'friends', // 当前用户的好友
-      foreignKey: 'user_id',
-    });
+  //   User.hasMany(app.model.Friend, {
+  //     as: 'friends', // 当前用户的好友
+  //     foreignKey: 'user_id',
+  //   });
 
-    User.hasMany(app.model.Moment, {
-      foreignKey: 'user_id',
-    });
-  };
+  //   User.hasMany(app.model.Moment, {
+  //     foreignKey: 'user_id',
+  //   });
+  // };
 
   return User;
 };
