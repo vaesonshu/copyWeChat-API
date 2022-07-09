@@ -16,11 +16,15 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1657121153786_8801';
 
   // add your middleware config here
-  config.middleware = [ 'errorHandler' ];
+  config.middleware = [ 'errorHandler', 'auth' ];
 
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
+  };
+
+  config.auth = {
+    ignore: [ '/reg', '/login', '/ws' ],
   };
 
   config.security = {

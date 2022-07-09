@@ -108,6 +108,18 @@ class UserController extends Controller {
     }
     return true;
   }
+
+  // 退出登录
+  async logout() {
+    const { ctx, service } = this;
+    // 拿到当前用户id
+    const current_user_id = ctx.authUser.id;
+    // 移除redis当前用户信息
+    if (!await service.cache.remove('user_' + current_user_id)) {
+      ctx.throw(400, '退出登录失败');
+    }
+    ctx.apiSuccess('退出成功');
+  }
 }
 
 module.exports = UserController;
